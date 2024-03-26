@@ -14,7 +14,7 @@ import java.util.Map;
 
 @RestController
 public class OrderController {
-    private static final String PAY_SRV_URL = "http://localhost:8001";
+    private static final String PAY_SRV_URL = "http://cloud-payment-service";
 
     @Resource
     private RestTemplate restTemplate;
