@@ -31,7 +31,7 @@ spring:
       circuitbreaker:
         enabled: true
         group:
-          enabled: false
+          enabled: true
 logging:
   level:
     com:
@@ -97,17 +97,17 @@ logging:
 
 #resilience4j Bulkhead THREADPOOL Example
 # spring.cloud.openfeign.circuitbreaker.group.enabled set as false
-resilience4j:
-  timelimiter:
-    configs:
-      default:
-        timeout-duration: 10s
-  thread-pool-bulkhead:
-    configs:
-      default:
-        core-thread-pool-size: 1
-        max-thread-pool-size: 1
-        queue-capacity: 1
-    instances:
-      cloud-payment-service:
-        baseConfig: default
+#resilience4j:
+#  timelimiter:
+#    configs:
+#      default:
+#        timeout-duration: 10s
+#  thread-pool-bulkhead:
+#    configs:
+#      default:
+#        core-thread-pool-size: 1
+#        max-thread-pool-size: 1
+#        queue-capacity: 1
+#    instances:
+#      cloud-payment-service:
+#        baseConfig: default
