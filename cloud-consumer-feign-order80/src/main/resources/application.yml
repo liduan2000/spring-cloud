@@ -28,6 +28,10 @@ spring:
           mime-types: text/xml,application/xml,application/json
         response:
           enabled: true
+      circuitbreaker:
+        enabled: true
+        group:
+          enabled: true
 logging:
   level:
     com:
@@ -35,3 +39,43 @@ logging:
         cloud:
           apis:
             PayFeignApi: debug
+# Resilience4j CircuitBreaker COUNT_BASED Example
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        failureRateThreshold: 50
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 6
+        minimumNumberOfCalls: 6
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 5s
+        permittedNumberOfCallsInHalfOpenState: 2
+        recordExceptions:
+          - java.lang.Exception
+    instances:
+      cloud-payment-service:
+        baseConfig: default
+
+# Resilience4j CircuitBreaker TIME_BASED Example
+#resilience4j:
+#  timelimiter:
+#    configs:
+#      default:
+#        timeout-duration: 10s
+#  circuitbreaker:
+#    configs:
+#      default:
+#        failureRateThreshold: 50
+#        slowCallDurationThreshold: 2s
+#        slowCallRateThreshold: 30
+#        slidingWindowType: TIME_BASED
+#        slidingWindowSize: 2
+#        minimumNumberOfCalls: 2
+#        permittedNumberOfCallsInHalfOpenState: 2
+#        waitDurationInOpenState: 5s
+#        recordExceptions:
+#          - java.lang.Exception
+#    instances:
+#      cloud-payment-service:
+#        baseConfig: default
