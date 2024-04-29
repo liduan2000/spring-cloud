@@ -40,22 +40,22 @@ logging:
           apis:
             PayFeignApi: debug
 # Resilience4j CircuitBreaker COUNT_BASED Example
-resilience4j:
-  circuitbreaker:
-    configs:
-      default:
-        failureRateThreshold: 50
-        slidingWindowType: COUNT_BASED
-        slidingWindowSize: 6
-        minimumNumberOfCalls: 6
-        automaticTransitionFromOpenToHalfOpenEnabled: true
-        waitDurationInOpenState: 5s
-        permittedNumberOfCallsInHalfOpenState: 2
-        recordExceptions:
-          - java.lang.Exception
-    instances:
-      cloud-payment-service:
-        baseConfig: default
+#resilience4j:
+#  circuitbreaker:
+#    configs:
+#      default:
+#        failureRateThreshold: 50
+#        slidingWindowType: COUNT_BASED
+#        slidingWindowSize: 6
+#        minimumNumberOfCalls: 6
+#        automaticTransitionFromOpenToHalfOpenEnabled: true
+#        waitDurationInOpenState: 5s
+#        permittedNumberOfCallsInHalfOpenState: 2
+#        recordExceptions:
+#          - java.lang.Exception
+#    instances:
+#      cloud-payment-service:
+#        baseConfig: default
 
 # Resilience4j CircuitBreaker TIME_BASED Example
 #resilience4j:
